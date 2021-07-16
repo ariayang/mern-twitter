@@ -8,12 +8,23 @@ const passport = require('passport');
 const users = require("./routes/api/users");
 const tweets = require("./routes/api/tweets");
 
+const User = require('./models/User');
+
+
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
-app.get("/", (req, res) => res.send("Hello World!!"));
+app.get("/", (req, res) => {
+  // const user = new User ({
+  //   handle: "jim",
+  //   email: "jim@jim.jim",
+  //   password: "jimishappy123"
+  // })
+  // user.save();
+  res.send("Hello world");
+});
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
